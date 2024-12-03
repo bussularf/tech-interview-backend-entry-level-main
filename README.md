@@ -15,8 +15,8 @@ Este projeto tem como objetivo implementar a lógica de um carrinho de compras
 ## Tecnologias Utilizadas
 
 - **Ruby**: 3.3.1
-- **Rails**:
-- **PostgreSQL**:
+- **Rails**
+- **PostgreSQL**
 - **Redis**
 - **Sidekiq**
 - **RSpec**
