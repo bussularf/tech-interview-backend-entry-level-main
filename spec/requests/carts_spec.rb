@@ -33,7 +33,7 @@ RSpec.describe "/carts", type: :request do
         expect(json_response['products']).to be_an(Array)
         expect(json_response['products'].first['id']).to eq(product.id)
         expect(json_response['products'].first['quantity']).to eq(2)
-        expect(json_response['total_price']).to eq('20.0')
+        expect(json_response['total_price']).to eq(20.0)
       end
     end
   end
@@ -57,10 +57,10 @@ RSpec.describe "/carts", type: :request do
 
       expect(json_response['id']).to eq(cart.id)
       expect(json_response['products']).to match_array([
-        a_hash_including('id' => product1.id, 'name' => 'Produto 1', 'quantity' => 2, 'unit_price' => '10.0', 'total_price' => '20.0'),
-        a_hash_including('id' => product2.id, 'name' => 'Produto 2', 'quantity' => 1, 'unit_price' => '20.0', 'total_price' => '20.0')
+        a_hash_including('id' => product1.id, 'name' => 'Produto 1', 'quantity' => 2, 'unit_price' => 10.0, 'total_price' => 20.0),
+        a_hash_including('id' => product2.id, 'name' => 'Produto 2', 'quantity' => 1, 'unit_price' => 20.0, 'total_price' => 20.0)
       ])      
-      expect(json_response['total_price']).to eq('40.0')
+      expect(json_response['total_price']).to eq(40.0)
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe "/carts", type: :request do
 
       it 'includes the updated total price in the response' do
         subject
-        expect(JSON.parse(response.body)["total_price"]).to eq('40.0')
+        expect(JSON.parse(response.body)["total_price"]).to eq(40.0)
       end
     end
 
@@ -119,7 +119,7 @@ RSpec.describe "/carts", type: :request do
 
       it 'includes the updated total price in the response' do
         subject
-        expect(JSON.parse(response.body)["total_price"]).to eq('0.0')
+        expect(JSON.parse(response.body)["total_price"]).to eq(0.0)
       end
     end
 

@@ -59,11 +59,11 @@ class CartsController < ApplicationController
           id: item.product.id,
           name: item.product.name,
           quantity: item.quantity,
-          unit_price: item.product.price,
-          total_price: item.product.price * item.quantity
+          unit_price: item.product.price.to_f,
+          total_price: (item.product.price * item.quantity).to_f
         }
       end,
-      total_price: @cart.total_price
+      total_price: @cart.total_price.to_f
     }
   end
 
