@@ -34,9 +34,11 @@ Este projeto tem como objetivo implementar a lógica de um carrinho de compras
 
 Caso receba esse erro 
 
+   ```
    tech-interview-backend-entry-level-main-test-1   | There was an error while trying to write to /rails/Gemfile.lock. It is likely
    tech-interview-backend-entry-level-main-test-1   | that you need to grant write permissions for that path.
    tech-interview-backend-entry-level-main-test-1 exited with code 23
+   ```
 
 Rode no seu console: `chmod 666 Gemfile.lock`, esse comnando ajuste as permissões do arquivo.
 
