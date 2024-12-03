@@ -43,3 +43,5 @@ Caso receba erro de permissão relacionado ao Gemfile.lock
 Rode no seu console: `chmod 666 Gemfile.lock`, esse comnando ajuste as permissões do arquivo.
 
 ***É possível rodar manualmente `rails s` e `bundle exec rspec` em caso de haver algum problema com o docker.***
+
+![Imagem 1](./img.png)
