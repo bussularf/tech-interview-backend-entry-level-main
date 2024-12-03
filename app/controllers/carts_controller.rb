@@ -1,41 +1,38 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :add_item, :update_quantity, :remove_product]
+
   def create
-    ActiveRecord::Base.transaction do
-      @cart = Cart.create!(total_price: 0.0)
-      
-      session[:cart_id] = @cart.id
-      
-      product = Product.find(params[:product_id])
-      @cart.cart_items.create!(product: product, quantity: params[:quantity])
-      
-      total_price = @cart.cart_items.sum { |item| item.product.price * item.quantity }
-      @cart.update!(total_price: total_price)
-      
-      render_cart
-    end
+    @cart = Cart.create!(total_price: 0.0)
+    session[:cart_id] = @cart.id
+
+    service = CartService.new(@cart)
+    service.add_product(product_from_params, quantity_from_params)
+
+    render_cart
   rescue ActiveRecord::RecordInvalid => e
-    render json: { error: "Error when create cart: #{e.message}" }, status: :unprocessable_entity
+    render json: { error: "Error when creating cart: #{e.message}" }, status: :unprocessable_entity
   end
-  
 
   def add_item
     handle_product_not_found do
-      @cart.add_product(product_from_params, quantity_from_params)
+      service = CartService.new(@cart)
+      service.add_product(product_from_params, quantity_from_params)
       render_cart
     end
   end
 
   def update_quantity
     handle_product_not_found do
-      @cart.update_product_quantity(params[:product_id], params[:quantity].to_i)
+      service = CartService.new(@cart)
+      service.update_product_quantity(params[:product_id], quantity_from_params)
       render_cart
     end
   end
 
   def remove_product
     handle_product_not_found do
-      @cart.remove_product(params[:product_id])
+      service = CartService.new(@cart)
+      service.remove_product(params[:product_id])
       render_cart
     end
   end
@@ -55,23 +52,20 @@ class CartsController < ApplicationController
   end
 
   def cart_payload
-    id = @cart.id,
-    items = @cart.cart_items.map do |item|
-      {
-        id: item.product.id,
-        name: item.product.name,
-        quantity: item.quantity,
-        unit_price: item.product.price,
-        total_price: item.product.price * item.quantity
-      }
-    end
     {
-      id: id,
-      items: items,
+      id: @cart.id,
+      items: @cart.cart_items.map do |item|
+        {
+          id: item.product.id,
+          name: item.product.name,
+          quantity: item.quantity,
+          unit_price: item.product.price,
+          total_price: item.product.price * item.quantity
+        }
+      end,
       total_price: @cart.total_price
     }
   end
-  
 
   def product_from_params
     Product.find(params[:product_id])

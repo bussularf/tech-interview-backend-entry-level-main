@@ -55,7 +55,7 @@ RSpec.describe "/carts", type: :request do
       expect(response).to have_http_status(:ok)
       json_response = JSON.parse(response.body)
 
-      expect(json_response['id']).to include(cart.id)
+      expect(json_response['id']).to eq(cart.id)
       expect(json_response['items']).to match_array([
         a_hash_including('id' => product1.id, 'name' => 'Produto 1', 'quantity' => 2, 'unit_price' => '10.0', 'total_price' => '20.0'),
         a_hash_including('id' => product2.id, 'name' => 'Produto 2', 'quantity' => 1, 'unit_price' => '20.0', 'total_price' => '20.0')
