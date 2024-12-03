@@ -22,8 +22,6 @@ services:
   web:
     build: .
     command: ["./bin/rails", "server", "-b", "0.0.0.0"]
-    volumes:
-      - .:/rails
     ports:
       - "3000:3000"
     depends_on:
@@ -36,8 +34,6 @@ services:
   test:
     build: .
     command: bash -c "bundle install && bin/rails db:create db:schema:load && bin/rails spec"
-    volumes:
-      - .:/rails
     depends_on:
       - db
       - redis
