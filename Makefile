@@ -1,3 +1,5 @@
+.PHONY: bash down build up test
+
 bash:
 	docker exec -it --user root web bash
 
@@ -7,5 +9,8 @@ down:
 build:
 	docker compose build
 
-start:
+up:
 	docker compose up
+
+test:
+	docker compose run test
