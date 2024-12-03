@@ -32,7 +32,7 @@ Este projeto tem como objetivo implementar a lógica de um carrinho de compras
    make up
    make test
 
-Caso receba esse erro 
+Caso receba erro de permissão relacionado o Gemfile.lock
 
    ```
    tech-interview-backend-entry-level-main-test-1   | There was an error while trying to write to /rails/Gemfile.lock. It is likely
