@@ -32,4 +32,4 @@ Este projeto tem como objetivo implementar a lógica de um carrinho de compras
    make up
    make test 
 
-***pode rodar manualmente `rails s` e `bundle exec rspec` em caso de algum problema com o docker.***
+***É possível rodar manualmente `rails s` e `bundle exec rspec` em caso de haver algum problema com o docker.***
