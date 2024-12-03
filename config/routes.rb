@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     patch :update_quantity, to: 'carts#update_quantity'
     delete '/:product_id', to: 'carts#remove_product', as: :remove_product
   end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "rails/health#show"
