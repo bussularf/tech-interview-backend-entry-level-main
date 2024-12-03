@@ -54,7 +54,7 @@ class CartsController < ApplicationController
   def cart_payload
     {
       id: @cart.id,
-      items: @cart.cart_items.map do |item|
+      products: @cart.cart_items.map do |item|
         {
           id: item.product.id,
           name: item.product.name,
