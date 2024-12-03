@@ -30,4 +30,6 @@ Este projeto tem como objetivo implementar a lógica de um carrinho de compras
    make down
    make build
    make up
-   make test
+   make test 
+
+***pode rodar manualmente `rails s` e `bundle exec rspec` em caso de algum problema com o docker.***
